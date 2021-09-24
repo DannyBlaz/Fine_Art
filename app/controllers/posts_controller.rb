@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_before_action :authorize, only: [:create, :index]
   before_action :set_post, only: [:show, :update, :destroy]
 
   # GET /posts
@@ -15,6 +16,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
+    # byebug
     @post = Post.new(post_params)
 
     if @post.save
@@ -46,6 +48,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :image, :category, :description, :user_id)
+      params.permit(:title, :image, :category, :description, :user_id)
     end
 end
