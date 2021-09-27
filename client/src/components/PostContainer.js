@@ -1,12 +1,12 @@
 import PostCard from './PostCard.js';
 import Comment from './Comment.js';
 
-function PostContainer() {
+function PostContainer({ post }) {
     return (
         <div className="postContainer">
-            <h1>PostContainer</h1>
-            <PostCard />
-            <Comment />
+            <hr/>
+            <PostCard post={ post }/>
+            <Comment comments={ post.comments }/>
         </div>
     );
 }
