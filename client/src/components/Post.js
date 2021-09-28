@@ -19,7 +19,7 @@ function Post({ currentUser }) {
             <Link to={"/me"}>
                 <button>Profile</button>
             </Link>
-            {postArray.map(post => <PostContainer post={post} key={ post.id } />)}
+            {postArray.map(post => <PostContainer post={post} currentUser={currentUser} key={ post.id } />)}
             <PostFrom setPostArray={setPostArray} currentUser={currentUser} />
         </div>
     );

@@ -22,7 +22,6 @@ function PostForm({ setPostArray, currentUser }) {
     
     function handleSubmit(e){
         e.preventDefault();
-        console.log(currentUser.id)
         fetch(`/posts`, {
             method: "POST",
             headers: {
@@ -37,19 +36,26 @@ function PostForm({ setPostArray, currentUser }) {
                 user_id: currentUser.id
             }),
         })
-            .then(res => res.json())
-            .then(data => {
-                let error = false;
-                if ((data.title && data.title.includes("can't be blank")) || (data.image && data.image.includes("can't be blank")) || (data.description && data.description.includes("can't be blank")) || (data.category && data.category.includes("can't be blank"))) {
-                    error = true
-                    console.log("yes")
-                }
-                if (error) {
-                    setErrors(["Most fill every box"])
-                } else {
-                    setPostArray((prevPosts) => [data, ...prevPosts]);
-                }
-            })
+        .then(res => res.json())
+        .then(data => {
+            let error = false;
+            if ((data.title && data.title.includes("can't be blank")) || (data.image && data.image.includes("can't be blank")) || (data.description && data.description.includes("can't be blank")) || (data.category && data.category.includes("can't be blank"))) {
+                error = true
+                console.log("yes")
+            }
+            if (error) {
+                setErrors(["Most fill every box"])
+            } else {
+                setPostArray((prevPosts) => [data, ...prevPosts]);
+            }
+        })
+        setFormData({
+            ...formData,
+            title: "",
+            image: "",
+            description: "",
+            category: ""
+        });
     }
 
     return (

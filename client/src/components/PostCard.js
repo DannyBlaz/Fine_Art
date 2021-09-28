@@ -1,5 +1,41 @@
+import { useState } from "react";
 
-function PostCard({ post }) {
+function PostCard({ post, currentUser, setNewComment }) {
+    const [body, setBody] = useState("");
+    const [errors, setErrors] = useState([]);
+
+    function manageCommentForm(e){
+        e.preventDefault()
+        setBody(e.target.value)
+    }
+
+    function handleSubmit(e){
+        e.preventDefault();
+        fetch(`/comments`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                body: body,
+                post_id: post.id,
+                user_id: currentUser.id
+            }),
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            // console.log(data.body)
+            if (Array.isArray(data.body)){
+                setErrors(Object.values(data.body).flat())
+            }else{
+                console.log(...post.comments, data)
+                setNewComment((prevComment) => [data, ...prevComment]);
+            }
+        });
+        e.target.reset();
+    }
+
     return (
         <div className="PostCard">
             <div className="post-owner">
@@ -20,6 +56,13 @@ function PostCard({ post }) {
                 />
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
+            </div>
+            <div className="post-comment">
+                <form onSubmit={handleSubmit}>
+                    Comment: <input type="text" name="body" placeholder="Add a comment..." onChange={manageCommentForm}/>
+                        <input type="submit"/>
+                    {errors.map(error => <div>{error}</div>)}
+                </form>
             </div>
         </div>
     );

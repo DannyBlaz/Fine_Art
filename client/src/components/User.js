@@ -2,8 +2,6 @@
 function User({ user }) {
     return (
         <div className="user">
-            {user ? (
-            <>
             <img
                 src={user.profile_picture}
                 alt="profile_picture"
@@ -17,8 +15,9 @@ function User({ user }) {
             <p>{user.about}</p>
             <br/>
             <h3>Posts</h3>
-            <ul>{user.posts.map(post => post.title)}</ul>
-            </>) : null}
+            {user.posts ? (
+            <ul>{user.posts.forEach(post => post.title)}</ul>
+            ): null}
         </div>
     );
 }

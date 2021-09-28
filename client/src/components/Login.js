@@ -19,7 +19,6 @@ function Login({ onLogin }) {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("login click")
 
         fetch("/login", {
             method: "POST",
@@ -33,7 +32,6 @@ function Login({ onLogin }) {
                 } else {
                     onLogin(data);
                     history.push("/home");
-
                 }
             });
     };
