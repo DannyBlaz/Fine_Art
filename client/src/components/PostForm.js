@@ -1,8 +1,6 @@
-import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-function PostForm({ setPostArray }) {
-    const history = useHistory();
+function PostForm({ setPostArray, currentUser }) {
     const [errors, setErrors] = useState([]);
     const [formData, setFormData] = useState({
         title: "",
@@ -10,10 +8,21 @@ function PostForm({ setPostArray }) {
         description: "",
         category: ""
     })
-
-
-    function onSubmit(e) {
+    
+    function manageFormData(e){
+        let myName = e.target.name;
+        let myValue = e.target.value
+        
+        setFormData({
+            ...formData,
+            [myName]: myValue
+        });
+        // console.log(formData);
+    }
+    
+    function handleSubmit(e){
         e.preventDefault();
+        console.log(currentUser.id)
         fetch(`/posts`, {
             method: "POST",
             headers: {
@@ -21,28 +30,39 @@ function PostForm({ setPostArray }) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                // title: title,
-                // image: image,
-                // description: description,
-                // category: category
+                title: formData.title,
+                image: formData.image,
+                description: formData.description,
+                category: formData.category,
+                user_id: currentUser.id
             }),
         })
-            .then((resp) => resp.json())
-            .then((data) => {
-                setPostArray((prevPosts) => [data, ...prevPosts]);
-            });
+            .then(res => res.json())
+            .then(data => {
+                let error = false;
+                if ((data.title && data.title.includes("can't be blank")) || (data.image && data.image.includes("can't be blank")) || (data.description && data.description.includes("can't be blank")) || (data.category && data.category.includes("can't be blank"))) {
+                    error = true
+                    console.log("yes")
+                }
+                if (error) {
+                    setErrors(["Most fill every box"])
+                } else {
+                    setPostArray((prevPosts) => [data, ...prevPosts]);
+                }
+            })
     }
 
     return (
-        <div>
+        <div className="post-form">
             <h2>Post Form</h2>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label>Title:</label>
-                <input type="text"  placeholder="title" value={formData.title} /><br/>
+                <input type="text" name="title" placeholder="title" value={formData.title} onChange={manageFormData} /><br/>
                 <label >Image:</label>
-                <input type="text"  placeholder="image" value={formData.image}/><br/>
+                <input type="text" name="image" placeholder="image" value={formData.image} onChange={manageFormData} /><br/>
                 <label >Choose a Category:</label>
-                <select placeholder="category" value={formData.category}>
+                <select name="category" placeholder="category" value={formData.category} onChange={manageFormData} >
+                    <option value="" default disabled hidden>Choose here</option>
                     <option value="Painting">Painting</option>
                     <option value="Sculpture">Sculpture</option>
                     <option value="Literature">Literature</option>
@@ -53,9 +73,12 @@ function PostForm({ setPostArray }) {
                 </select>
                 <br/>
                 <label >Description:</label>
-                <input type="text" placeholder="description" value={formData.description} /><br/>
+                <input type="text" name="description" placeholder="description" value={formData.description} onChange={manageFormData} /><br/>
                 
                 <input type="submit" value="Submit"/>
+                {errors.map((error) => (
+                    <div>{error}</div>
+                ))}
             </form>
         </div>
     );

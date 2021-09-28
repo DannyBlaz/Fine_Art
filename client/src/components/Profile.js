@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import User from './User.js';
+import { Link } from "react-router-dom";
 
-function Profile() {
+function Profile({ owner }) {
+    console.log(owner.id);
     const [userArr, setUserArr] = useState([])
 
     useEffect(() =>{
@@ -9,11 +11,21 @@ function Profile() {
         .then(res => res.json())
         .then(data => setUserArr(data))
     },[])
+     
+    let user = {}
+    userArr.forEach(ele =>  {
+        if(ele.id === owner.id){
+            user = ele
+        }}
+    )
 
     return (
         <div className="profile">
             <h1>Profile</h1>
-            {userArr.map(user => <User user={user} key={user.id} />)}
+            <Link to={"/home"}>
+                <button>Post</button>
+            </Link>
+            <User user={user} key={user.id} />
         </div>
     );
 }

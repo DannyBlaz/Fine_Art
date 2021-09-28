@@ -1,8 +1,9 @@
 
 function User({ user }) {
-    // console.log(user)
     return (
         <div className="user">
+            {user ? (
+            <>
             <img
                 src={user.profile_picture}
                 alt="profile_picture"
@@ -17,6 +18,7 @@ function User({ user }) {
             <br/>
             <h3>Posts</h3>
             <ul>{user.posts.map(post => post.title)}</ul>
+            </>) : null}
         </div>
     );
 }
