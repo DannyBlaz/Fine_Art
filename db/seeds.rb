@@ -14,11 +14,11 @@ u1 = User.create(username: "jack", about: Faker::Quote.famous_last_words, profil
 u2 = User.create(username: "jill", about: Faker::Quote.famous_last_words, profile_picture:Faker::Avatar.image, password:"1234567", artist_type: artist_type.sample)
 
 p1 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u1.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ['art']), title: Faker::Movie.title)
-p2 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u1.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ['art']), title: Faker::Movie.title)
-p3 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u1.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ['art']), title: Faker::Movie.title)
-p4 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u2.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ['art']), title: Faker::Movie.title)
-p5 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u2.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ['art']), title: Faker::Movie.title)
-p6 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u2.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ['art']), title: Faker::Movie.title)
+p2 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u1.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ['Photograph']), title: Faker::Movie.title)
+p3 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u1.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ["Painting"]), title: Faker::Movie.title)
+p4 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u2.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ['sculpture']), title: Faker::Movie.title)
+p5 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u2.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ['photograph']), title: Faker::Movie.title)
+p6 = Post.create(description: Faker::Quotes::Shakespeare.hamlet_quote, user_id: u2.id, category: category.sample, image:Faker::LoremFlickr.image( search_terms: ['Art']), title: Faker::Movie.title)
 
 c1 = Comment.create(body: Faker::Movie.quote, user_id: u1.id, post_id: p2.id)
 c2 = Comment.create(body: Faker::Movie.quote, user_id: u2.id, post_id: p1.id)

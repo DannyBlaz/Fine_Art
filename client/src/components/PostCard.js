@@ -3,6 +3,7 @@ import { useState } from "react";
 function PostCard({ post, setNewComment }) {
     const [body, setBody] = useState("");
     const [errors, setErrors] = useState([]);
+    setNewComment(post.comments)
 
     function manageCommentForm(e){
         e.preventDefault()
@@ -29,8 +30,8 @@ function PostCard({ post, setNewComment }) {
             if (data.errors){
                 setErrors(data.errors)
             }else{
-                post.comments.push(data)
-                setNewComment(post.comments)
+                // post.comments.push(data)
+                setNewComment((prevComments) => [data, ...prevComments])
                 window.location.reload();
             }
         });

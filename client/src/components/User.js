@@ -16,7 +16,7 @@ function User({ user }) {
             <br/>
             <h3>Posts</h3>
             {user.posts ? (
-                <ul>{user.posts.map(post => <li>{post.title}</li>)}</ul>
+                <ul>{user.posts.map(post => <li key={post.id}>{post.title}</li>)}</ul>
             ): null}
         </div>
     );

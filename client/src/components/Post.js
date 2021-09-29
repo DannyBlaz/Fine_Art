@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 function Post() {
     const [postArray, setPostArray] = useState([]);
     const history = useHistory();
+    // console.log(postArray);
 
     useEffect(() =>{
         fetch("/posts")
