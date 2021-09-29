@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize, only: [:create, :index]
+  skip_before_action :authorize, only: [:create]
 
   # GET /users
   def index
@@ -14,14 +14,11 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
-
-    if @user.save
+    @user = User.create!(user_params)
       session[:user_id] = @user.id
       render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+      rescue ActiveRecord::RecordInvalid => invalid
+      render json: { errors: invalid.record.errors.full_messages }
   end
 
   # PATCH/PUT /users/1

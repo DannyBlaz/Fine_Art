@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import User from './User.js';
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Profile({ owner }) {
-    console.log(owner.id);
     const [userArr, setUserArr] = useState([])
+    const history = useHistory();
 
     useEffect(() =>{
         fetch("/users")
@@ -13,12 +14,13 @@ function Profile({ owner }) {
     },[])
      
     let user = {}
-    userArr.forEach(ele =>  {
-        if(ele.id === owner.id){
-            user = ele
-        }}
-    )
-
+    localStorage.user ? (
+        userArr.forEach(ele =>  {
+            if (ele.id == localStorage.user){
+                user = ele
+            }}
+        )
+    ) : history.push("/")
     return (
         <div className="profile">
             <h1>Profile</h1>

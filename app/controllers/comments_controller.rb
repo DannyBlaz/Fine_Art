@@ -16,13 +16,10 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
-
-    if @comment.save
+    @comment = Comment.create!(comment_params)
       render json: @comment, status: :created, location: @comment
-    else
-      render json: @comment.errors, status: :unprocessable_entity
-    end
+      rescue ActiveRecord::RecordInvalid => invalid
+      render json: { errors: invalid.record.errors.full_messages }
   end
 
   # PATCH/PUT /comments/1

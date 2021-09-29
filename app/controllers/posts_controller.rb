@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  skip_before_action :authorize, only: [:create, :index]
   before_action :set_post, only: [:show, :update, :destroy]
 
   # GET /posts
@@ -16,14 +15,10 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    # byebug
-    @post = Post.new(post_params)
-
-    if @post.save
-      render json: @post, status: :created, location: @post
-    else
-      render json: @post.errors, status: :unprocessable_entity
-    end
+    @post = Post.create!(post_params)
+    render json: @post, status: :created, location: @post
+    rescue ActiveRecord::RecordInvalid => invalid
+    render json: { errors: invalid.record.errors.full_messages }
   end
 
   # PATCH/PUT /posts/1

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function PostForm({ setPostArray, currentUser }) {
+function PostForm({ setPostArray }) {
     const [errors, setErrors] = useState([]);
     const [formData, setFormData] = useState({
         title: "",
@@ -17,7 +17,6 @@ function PostForm({ setPostArray, currentUser }) {
             ...formData,
             [myName]: myValue
         });
-        // console.log(formData);
     }
     
     function handleSubmit(e){
@@ -33,18 +32,13 @@ function PostForm({ setPostArray, currentUser }) {
                 image: formData.image,
                 description: formData.description,
                 category: formData.category,
-                user_id: currentUser.id
+                user_id: localStorage.user
             }),
         })
         .then(res => res.json())
         .then(data => {
-            let error = false;
-            if ((data.title && data.title.includes("can't be blank")) || (data.image && data.image.includes("can't be blank")) || (data.description && data.description.includes("can't be blank")) || (data.category && data.category.includes("can't be blank"))) {
-                error = true
-                console.log("yes")
-            }
-            if (error) {
-                setErrors(["Most fill every box"])
+            if (data.errors) {
+                setErrors(data.errors)
             } else {
                 setPostArray((prevPosts) => [data, ...prevPosts]);
             }
@@ -81,10 +75,10 @@ function PostForm({ setPostArray, currentUser }) {
                 <label >Description:</label>
                 <input type="text" name="description" placeholder="description" value={formData.description} onChange={manageFormData} /><br/>
                 
-                <input type="submit" value="Submit"/>
                 {errors.map((error) => (
                     <div>{error}</div>
                 ))}
+                <input type="submit" value="Submit"/>
             </form>
         </div>
     );

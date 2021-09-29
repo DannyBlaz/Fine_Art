@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function Login({ onLogin }) {
+function Login() {
     const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [user, setUser] = useState({
@@ -30,8 +30,9 @@ function Login({ onLogin }) {
                 if (data.errors) {
                     setErrors(data.errors);
                 } else {
-                    onLogin(data);
+                    localStorage.setItem("user", data.id)
                     history.push("/home");
+                    window.location.reload();
                 }
             });
     };
@@ -65,4 +66,3 @@ function Login({ onLogin }) {
 }
 
 export default Login;
-//testing again and again

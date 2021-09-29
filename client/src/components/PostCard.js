@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function PostCard({ post, currentUser, setNewComment }) {
+function PostCard({ post, setNewComment }) {
     const [body, setBody] = useState("");
     const [errors, setErrors] = useState([]);
 
@@ -20,17 +20,18 @@ function PostCard({ post, currentUser, setNewComment }) {
             body: JSON.stringify({
                 body: body,
                 post_id: post.id,
-                user_id: currentUser.id
+                user_id: localStorage.user
             }),
         })
         .then((resp) => resp.json())
         .then((data) => {
-            // console.log(data.body)
-            if (Array.isArray(data.body)){
-                setErrors(Object.values(data.body).flat())
+            // console.log(data);
+            if (data.errors){
+                setErrors(data.errors)
             }else{
-                console.log(...post.comments, data)
-                setNewComment((prevComment) => [data, ...prevComment]);
+                post.comments.push(data)
+                setNewComment(post.comments)
+                window.location.reload();
             }
         });
         e.target.reset();

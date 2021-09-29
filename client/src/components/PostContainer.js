@@ -2,15 +2,14 @@ import PostCard from './PostCard.js';
 import Comment from './Comment.js';
 import { useState } from "react";
 
-function PostContainer({ post, currentUser }) {
-    const [newComment, setNewComment] = useState([])
-    let allComments = [post.comments.push(newComment)]
-    console.log(post.comments)
+function PostContainer({ post }) {
+    const [newComment, setNewComment] = useState(post.comments)
+    // console.log(Array.isArray(post.comments))
     return (
         <div className="postContainer">
             <hr/>
-            <PostCard post={ post } setNewComment={ setNewComment }currentUser={currentUser} />
-            <Comment comments={ newComment.length > 0 ? allComments : post.comments}/>
+            <PostCard post={post} comments={ post.comments } setNewComment={setNewComment} />
+            <Comment comments={ newComment } />
         </div>
     );
 }

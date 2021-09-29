@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 
-function Signup({ onLogin }) {
+function Signup() {
     const [errors, setErrors] = useState([]);
     const history = useHistory();
 
@@ -36,17 +36,12 @@ function Signup({ onLogin }) {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(Object.values(data).flat())
-                let error = false;
-                if ((data.username && data.username.includes("can't be blank")) || (data.artist_type && data.artist_type.includes("can't be blank")) || (data.password && data.password.includes("is too short (minimum is 6 characters)")) || (data.password && data.password.includes('is too long (maximum is 16 characters)'))) {
-                    error = true
-                    console.log("yes")
-                }
-                if (error) {
-                    setErrors(Object.values(data).flat())
+                if (data.errors) {
+                    setErrors(data.errors)
                 } else {
-                    onLogin(data);
+                    localStorage.setItem("user", data.id)
                     history.push("/home");
+                    window.location.reload();
                 }
             });
     }
@@ -74,8 +69,8 @@ function Signup({ onLogin }) {
                     <option value="Director">Director</option>
                 </select>
                 <br />
-                <button type="submit">Signup</button>
                 {errors.map(error => <div>{error}</div>)}
+                <button type="submit">Signup</button>
             </form>
         </div>
     );

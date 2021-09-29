@@ -1,11 +1,11 @@
 import Login from './Login';
 import Signup from './Signup';
-function Auth({ setUser }) {
+function Auth() {
     return (
         <div className="Auth">
             <h1>Auth</h1>
-            <Login onLogin={setUser}/>
-            <Signup onLogin={setUser}/>
+            <Login />
+            <Signup />
         </div>
     );
 }
