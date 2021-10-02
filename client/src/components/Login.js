@@ -38,25 +38,27 @@ function Login() {
     };
 
     return (
-        <div className="login">
+        <div className="auth-form">
+            <h1>Login</h1>
             <form onSubmit={handleSubmit} float="right">
+                <label>Username</label>
                 <input type="text"
                     value={user.username}
-                    label="Username"
                     placeholder="Username"
                     name="username"
                     onChange={loginOnChange}
                 />
+                <br />
 
-
+                <label>Password</label>
                 <input
                     type="password"
                     value={user.password}
-                    label="Password"
                     placeholder="Password"
                     name="password"
                     onChange={loginOnChange}
                 />
+                <br />
 
                 {errors.map(error => <div>{error}</div>)}
                 <button>Login</button>

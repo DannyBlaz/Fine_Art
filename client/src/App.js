@@ -1,9 +1,10 @@
-import './App.css';
+import './App.css'
 import Auth from './components/Auth.js';
 import Post from './components/Post.js';
 import Profile from './components/Profile.js';
 import { Route, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const history = useHistory();
@@ -22,13 +23,12 @@ function App() {
   return (
     <div className="App">
       {localStorage.user ? (
-        <div>
+        <div className="logout">
           <button onClick={handleLogout}>
             Logout
           </button>
         </div>
       ) : null}
-      <h1>App</h1>
       <Switch>
         <Route path="/home" component={() => <Post />} />
         <Route path="/me" component={() => <Profile />} />

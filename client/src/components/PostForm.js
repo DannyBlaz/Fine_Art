@@ -54,7 +54,7 @@ function PostForm({ setPostArray }) {
 
     return (
         <div className="post-form">
-            <h2>Post Form</h2>
+            <h2>Make A Post</h2>
             <form onSubmit={handleSubmit}>
                 <label>Title:</label>
                 <input type="text" name="title" placeholder="title" value={formData.title} onChange={manageFormData} /><br/>
@@ -78,6 +78,7 @@ function PostForm({ setPostArray }) {
                 {errors.map((error) => (
                     <div>{error}</div>
                 ))}
+                <br />
                 <input type="submit" value="Submit"/>
             </form>
         </div>

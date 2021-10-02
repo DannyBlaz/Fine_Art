@@ -46,8 +46,9 @@ function Signup() {
             });
     }
     return (
-        <div className="signup">
-            <h2>Sign Up</h2>
+        <div className="auth-form">
+            <h1>Signup</h1>
+            <p>Create an account by filling the form below.</p>
             <form onSubmit={handleSubmit} >
                 <label>Username:</label>
                 <input type="text" name="username" placeholder="Username" value={userData.username} onChange={handleChange} /><br />

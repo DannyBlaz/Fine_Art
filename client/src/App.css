@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
+
+/* RESET */
+
+body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    text-decoration: inherit;
+    vertical-align: inherit;
+    box-sizing: inherit;
+    background: transparent;
+    list-style: none;
+    background-color:#27496D;
+}
+
+button{
+    font-family: "Montserrat", "sans-serif";
+    background-color: #00A8CC;
+    color: white;
+    height: 35px;
+    border-radius: 6px;
+    width: 100px;
+    font-weight: 800;
+}
+
+/* AUTH */
+
+div.auth{
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 50%;
+    padding: 10px;
+    color:white;
+    height: auto;
+    width: 400px;
+    background-color:#142850;
+    border-radius: 12px;
+    font-family: "Montserrat", "sans-serif";
+}
+
+div.nav-bar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.auth p {
+    text-align: center;
+    padding-top: 20 px;
+    font-size: 15px;
+}
+
+.form-box button {
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #27496D;
+    color: white;
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+.auth-form > h1{
+    text-align: center;
+    padding-top: 15px;
+}
+.auth-form > h4{
+    margin: 0;
+}
+
+.auth-form{
+    width: 300px;
+    margin-left: 20px;
+}
+
+.auth-form label{
+    display: flex;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.auth-form input, select{
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline:none;
+}
+
+.auth-form button{
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #27496D;
+    color: white;
+    font-size: 18px;
+}
+
+.auth .nav-bar{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    position: static;
+}
+
+.logout{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #27496D;
+}
+
+.logout button{
+    font-family: "Montserrat", "sans-serif";
+    background-color: #00A8CC;
+    color: white;
+    height: 35px;
+    border-radius: 6px;
+    width: 100px;
+    font-weight: 800;
+}
+
+/* NAV-BAR */
+
+.nav-bar h1{
+    font-family: "Montserrat", "sans-serif";
+    font-weight: 800;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-profile{
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+    background-color: #142850;
+    align-self: center;
+    padding: 10px ;
+    position: sticky;
+    top: 35px;
+    left: 0;
+    width: 100%;
+}
+
+.logo{ 
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-right: 25px;
+}
+
+a{ 
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+/* PROFILE */
+
+.user-container{
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    width: 50%;
+    padding: 10px;
+    color:white;
+    height: auto;
+    width: 400px;
+    background-color:#142850;
+    border-radius: 12px;
+    font-family: "Montserrat", "sans-serif";
+}
+
+.user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user img{
+    border-radius: 50px;
+}
+
+.user-stats{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* POST-FORM */
+
+.post-form{
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    width: 50%;
+    padding: 10px;
+    color:white;
+    height: auto;
+    width: 400px;
+    background-color:#142850;
+    border-radius: 12px;
+    font-family: "Montserrat", "sans-serif";
+}
+
+.post-form input, select{
+    width: 90%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline:none;
+}
+
+.post-form button{
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #27496D;
+    color: white;
+    font-size: 18px;
+}
+
+.post-form label{
+    display: flex;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+div.main{
+    display: flex;
+    margin-top: 30px;
+    /* position: absolute; */
+}
+
+.post-container hr{
+    margin: 0;
+}
+
+.side-bar{
+    /* position: fixed; */
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: #0C7B93;
+    font-family: "Montserrat", "sans-serif";
+}
+
+.side-bar h2:first-child{
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    line-height: 70px;
+    background-color: #00A8CC;
+    margin-top: 0;
+    margin-bottom: 0;
+    user-select: none;
+    border-radius: 4px;
+}
+
+.post-owner{
+    display: flex;
+    flex-direction: column;
+}
+
+.post-owner img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
+
+.post-card{
+    display: flex;
+}
+
+.post-card .post{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.post-card .post h2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.post-card .post img{
+    height: 100px;
+    width: 100px;
+}
+
+.post-container:hover{
+    opacity: 0.5;
+}
+
+.form-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.single-post{
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 50px;
+    width: 80%;
+    height: 150px;
+    padding: 10px;
+    color:white;
+    height: auto;
+    width: 400px;
+    background-color:#142850;
+    border-radius: 12px;
+    font-family: "Montserrat", "sans-serif";
+    /* bottom: 0;
+    right: -50; */
+}

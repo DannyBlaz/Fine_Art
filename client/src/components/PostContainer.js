@@ -1,15 +1,16 @@
 import PostCard from './PostCard.js';
-import Comment from './Comment.js';
-import { useState } from "react";
 
-function PostContainer({ post }) {
-    const [newComment, setNewComment] = useState(post.comments)
-    // console.log(Array.isArray(post.comments))
+function PostContainer({ post, setSinglePost }) {
+    // console.log(post.comments);
+
+    function handleClick(e){
+        setSinglePost(post)
+    }
+
     return (
-        <div className="postContainer">
+        <div className="post-container" onClick={handleClick}>
             <hr/>
-            <PostCard post={post} comments={ post.comments } setNewComment={setNewComment} />
-            <Comment comments={ newComment } />
+            <PostCard post={post}  />
         </div>
     );
 }
