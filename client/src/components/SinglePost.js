@@ -13,6 +13,7 @@ function SinglePost({ post }){
             </div>
             <div className="post">
                 <img
+                    className="single-post-img"
                     src={post.image}
                     alt="post"
                 />
