@@ -58,6 +58,7 @@ function Post() {
             }
         ]
     })
+    
     // console.log(postArray);
 
     useEffect(() =>{
