@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PostContainer from './PostContainer.js';
 import PostFrom from './PostForm.js';
 import SinglePost from './SinglePost.js';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Logo from "./assets/logo.png";
 import Profile from "./assets/profile.png";
@@ -10,6 +10,7 @@ import Profile from "./assets/profile.png";
 function Post() {
     const [postArray, setPostArray] = useState([]);
     const [postForm, setPostForm] = useState(false);
+    const [search, setSearch] = useState("")
     const history = useHistory();
     const [singlePost, setSinglePost] = useState({
         "id": 1,
@@ -70,7 +71,10 @@ function Post() {
         setPostForm(!postForm);
     }
 
-    
+    const searchItems = postArray.filter((card) => {
+        return card.title.toLowerCase().includes(search.toLowerCase()) || card.user.username.toLowerCase().includes(search.toLowerCase())
+    })    
+
     return (
         <>
             {localStorage.user ? (
@@ -87,7 +91,7 @@ function Post() {
                             />
                             <h1>Profile</h1>
                         </Link>
-                        <h1 className="nav-profile" style={{ fontSize: "40px" }}>Home Page</h1>
+                        <h1 className="nav-profile" style={{ fontSize: "40px" }}>Gallery</h1>
                         <div className="logo">
                             <img
                                 src={Logo}
@@ -102,8 +106,17 @@ function Post() {
                     </nav>
                     <div className="main">
                         <div className="side-bar">
-                            <h2>Posts</h2>
-                            {postArray.map(post => <PostContainer setSinglePost={setSinglePost} post={post} key={ post.id } />)}
+                            <h2>Works</h2>
+                            <div className="search-bar">
+                                <input
+                                    type="text"
+                                    id="search"
+                                    placeholder="🔍 Search here ..."
+                                    onChange={(e) => setSearch(e.target.value)}
+                                />
+                                
+                            </div>
+                            {searchItems.map(post => <PostContainer setSinglePost={setSinglePost} post={post} key={ post.id } />)}
                         </div>
                         <div className="single-post" style={{
                             width: '74%',
