@@ -3,7 +3,7 @@ import PostCard from './PostCard.js';
 function PostContainer({ post, setSinglePost }) {
     // console.log(post.comments);
 
-    function handleClick(e){
+    function handleClick(){
         setSinglePost(post)
     }
 

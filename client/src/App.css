@@ -296,12 +296,26 @@ div.main{
 .post-owner{
     display: flex;
     flex-direction: column;
+    border-radius: 4px;
 }
 
 .post-owner img{
     height: 50px;
     width: 50px;
     border-radius: 50px;
+}
+
+.single-post-owner img{
+    height: 50px;
+    width: auto;
+    border-radius: 50px;
+    border: 1px solid gray;
+}
+
+.single-post-owner{
+    display: flex;
+    flex-direction: row;
+    border-radius: 4px;
 }
 
 .post-card{

@@ -71,7 +71,7 @@ function Post() {
     function handleClick(e){
         setPostForm(!postForm);
     }
-
+    console.log(postArray[0])
     const searchItems = postArray.filter((card) => {
         return card.title.toLowerCase().includes(search.toLowerCase()) || card.user.username.toLowerCase().includes(search.toLowerCase())
     })    

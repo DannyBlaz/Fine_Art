@@ -4,7 +4,11 @@ function Comment({ post }) {
     const [body, setBody] = useState("");
     const [errors, setErrors] = useState([]);
     const [newComments, setNewComments] = useState(post.comments)
+    setNewComments(post.comments)
 
+    console.log([post.comments])
+    // console.log(post.comments.concat(newComments))
+    
     function manageCommentForm(e) {
         e.preventDefault()
         setBody(e.target.value)
@@ -30,7 +34,7 @@ function Comment({ post }) {
                 if (data.errors) {
                     setErrors(data.errors)
                 } else {
-                    setNewComments((prevComments) => [data, ...prevComments])
+                    setNewComments([data, ...post.comments])
                     // window.location.reload();
                 }
             });
