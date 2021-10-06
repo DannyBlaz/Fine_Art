@@ -53,7 +53,7 @@ function Signup() {
                 <label>Username:</label>
                 <input type="text" name="username" placeholder="Username" value={userData.username} onChange={handleChange} /><br />
                 <label>Password:</label>
-                <input type="text" name="password" placeholder="Password" value={userData.password} onChange={handleChange} /><br />
+                <input type="password" name="password" placeholder="Password" value={userData.password} onChange={handleChange} /><br />
                 <label>Profile Picture:</label>
                 <input type="text" name="profile_picture" placeholder="image" value={userData.profile_picture} onChange={handleChange} /><br />
                 <label>About:</label>
