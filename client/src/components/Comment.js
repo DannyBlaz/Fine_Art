@@ -1,13 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 
 function Comment({ post }) {
     const [body, setBody] = useState("");
     const [errors, setErrors] = useState([]);
-    const [newComments, setNewComments] = useState(post.comments)
-    setNewComments(post.comments)
+    const [comments, setComments] = useState([])
 
-    console.log([post.comments])
-    // console.log(post.comments.concat(newComments))
+    useEffect(() => {
+        fetch("/comments")
+            .then(resp => resp.json())
+            .then(data => 
+                setComments(data)
+            )
+    }, [post])
+
+    const useComment = []
+    const newComment = comments.map(ele => {
+        if (ele.post_id === post.id){
+            return ele
+        }
+    })
+    newComment.forEach(ele => ele ? useComment.push(ele) : null )
     
     function manageCommentForm(e) {
         e.preventDefault()
@@ -30,11 +42,11 @@ function Comment({ post }) {
         })
             .then((resp) => resp.json())
             .then((data) => {
-                // console.log(data);
+                console.log(data);
                 if (data.errors) {
                     setErrors(data.errors)
                 } else {
-                    setNewComments([data, ...post.comments])
+                    setComments(prev => ([data, ...prev]))
                     // window.location.reload();
                 }
             });
@@ -51,8 +63,8 @@ function Comment({ post }) {
                 </form>
             </div>
             <h3>Comments</h3>
-            {newComments ? (
-                <ul>{newComments.map(comment => <li key={comment.id} className="lead">{comment.body}</li>)}</ul>)
+            {comments ? (
+                <ul>{useComment.map(comment => <li key={comment.id} className="lead">{comment.body}</li>)}</ul>)
                 : null}
         </div>
     );
