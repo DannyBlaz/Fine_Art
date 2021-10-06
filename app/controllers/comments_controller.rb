@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  skip_before_action :authorize, only: [:create, :index]
+  skip_before_action :authorize, only: [:create, :index, :show]
   before_action :set_comment, only: [:show, :update, :destroy]
 
   # GET /comments

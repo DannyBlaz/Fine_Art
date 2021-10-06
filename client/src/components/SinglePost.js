@@ -1,10 +1,10 @@
 import Comment from './Comment.js';
 
 function SinglePost({ post }){
-
+    // console.log(post)
     return (
         <div className="single-post">
-            <div className="post-owner">
+            <div className="single-post-owner">
                 <img
                     src={post.user.profile_picture}
                     alt="user-profile_picture"
