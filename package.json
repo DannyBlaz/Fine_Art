@@ -1,6 +1,6 @@
 {
-  "name": "phase-4-deploying-app-demo",
-  "description": "Build scripts for Heroku",
+  "name": "fine-art",
+  "description": "An app for art students",
   "engines": {
     "node": ">= 14"
   },
