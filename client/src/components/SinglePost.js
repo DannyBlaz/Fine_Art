@@ -18,7 +18,8 @@ function SinglePost({ post }){
                     alt="post"
                 />
                 <h2>{post.title}</h2>
-                <p>{post.description}</p>
+                <h3>{post.category}</h3>
+                <p><h3>Description:</h3> {post.description}</p>
             </div>
             <Comment post={ post } />
         </div>
