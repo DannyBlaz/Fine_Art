@@ -123,7 +123,7 @@ function User({ user }) {
             if (data.errors) {
                 setErrors(data.errors)
             } else {
-                history.push("/api/me");
+                history.push("/home");
                 window.location.reload();
             }
         });
