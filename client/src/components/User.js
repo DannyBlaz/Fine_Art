@@ -5,6 +5,7 @@ function User({ user }) {
     const [errors, setErrors] = useState([]);
     const history = useHistory();
     const [updateForm, setUpdateForm] = useState(false);
+    const [updatePost, setUpdatePost] = useState(false);
     const [userData, setUserData] = useState({
         username: "",
         password: "",
@@ -12,7 +13,79 @@ function User({ user }) {
         artist_type: "",
         profile_picture: ""
     });
+    const [formData, setFormData] = useState({
+        title: "",
+        image: "",
+        description: "",
+        category: ""
+    })
 
+    // POST UPDATE_
+    function manageFormData(e) {
+        let myName = e.target.name;
+        let myValue = e.target.value
+
+        setFormData({
+            ...formData,
+            [myName]: myValue
+        });
+    }
+
+    function handlePost(e){
+        console.log(e.target.innerText)
+        setUpdatePost(!updatePost)
+        console.log(updatePost)
+        user.posts.forEach(post => {
+            if (post.title === e.target.innerText){
+                localStorage.setItem("post_id", post.id)
+                console.log(parseFloat(localStorage.post_id))
+                setFormData({
+                    title: post.title,
+                    image: post.image,
+                    description: post.description,
+                    category: post.category
+                })
+            }
+        })
+    }
+
+    function handlePostSubmit(e) {
+        e.preventDefault();
+        console.log(parseFloat(localStorage.post_id))
+        fetch(`/posts/${parseFloat(localStorage.post_id)}`, {
+            method: "PATCH",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: formData.title,
+                image: formData.image,
+                description: formData.description,
+                category: formData.category,
+                user_id: localStorage.user
+            }),
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.errors) {
+                    setErrors(data.errors)
+                } else {
+                    window.location.reload();
+                    // setPostArray((prevPosts) => [data, ...prevPosts]);
+                }
+            })
+        setFormData({
+            ...formData,
+            title: "",
+            image: "",
+            description: "",
+            category: ""
+        });
+    }
+    
+    // PROFILE UPDATE_
     function handleClick(e) {
         setUpdateForm(!updateForm)
         setUserData({
@@ -23,7 +96,7 @@ function User({ user }) {
             profile_picture: user.profile_picture
         })
     }
-
+    
     function handleChange(e) {
         const name = e.target.name;
         const value = e.target.value;
@@ -100,9 +173,39 @@ function User({ user }) {
                 <p>About: {user.about}</p>
                 <br/>
                 <h3>Projects</h3>
+                {updatePost ? 
+                <form onSubmit={handlePostSubmit}>
+                    <label>Title:</label>
+                    <input type="text" name="title" placeholder="title" value={formData.title} onChange={manageFormData} /><br />
+                    <label >Image:</label>
+                    <input type="text" name="image" placeholder="image" value={formData.image} onChange={manageFormData} /><br />
+                    <label >Choose a Category:</label>
+                    <select name="category" placeholder="category" value={formData.category} onChange={manageFormData} >
+                        <option value="" default disabled hidden>Choose here</option>
+                        <option value="Painting">Painting</option>
+                        <option value="Sculpture">Sculpture</option>
+                        <option value="Literature">Literature</option>
+                        <option value="Architecture">Architecture</option>
+                        <option value="Photography">Photography</option>
+                        <option value="Music">Music</option>
+                        <option value="Theater">Theater</option>
+                    </select>
+                    <br />
+                    <label >Description:</label>
+                    <input type="text" name="description" placeholder="description" value={formData.description} onChange={manageFormData} /><br />
+
+                    {errors.map((error) => (
+                        <div>{error}</div>
+                    ))}
+                    <br />
+                    <input type="submit" value="Submit" />
+                </form>
+                :
+                <>
                 {user.posts ? (
-                    <ul>{user.posts.map(post => <li key={post.id}>{post.title}</li>)}</ul>
-                ): null}
+                        <ul>{user.posts.map(post => <li key={post.id} onClick={handlePost}>{post.title}</li>)}</ul>
+                ): null}</>
+                }
             </div>}
         </div>
     );
