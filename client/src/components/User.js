@@ -72,6 +72,7 @@ function User({ user }) {
                 if (data.errors) {
                     setErrors(data.errors)
                 } else {
+                    history.push("/api/me");
                     window.location.reload();
                 }
             })
@@ -122,7 +123,7 @@ function User({ user }) {
             if (data.errors) {
                 setErrors(data.errors)
             } else {
-                history.push("/me");
+                history.push("/api/me");
                 window.location.reload();
             }
         });
