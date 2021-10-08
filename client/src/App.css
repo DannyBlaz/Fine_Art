@@ -258,9 +258,15 @@ div.main{
     /* position: fixed; */
     left: 0;
     width: 250px;
-    height: 100%;
+    max-height: 1000px;
+    overflow: hidden;
+    overflow-y: scroll;
     background: #0C7B93;
     font-family: "Montserrat", "sans-serif";
+}
+
+.side-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .side-bar h2:first-child{
@@ -357,10 +363,10 @@ div.main{
     margin-left: 5px;
     margin-bottom: 50px;
     /* width: 80%; */
-    height: 150px;
+    height: auto;
+    /* max-height: 1200px;     */
     padding: 10px;
     color:white;
-    height: auto;
     width: 400px;
     background-color:#142850;
     border-radius: 12px;
@@ -372,6 +378,7 @@ div.main{
 .single-post-img{
     border-radius: 8px;
     height: 400px;
+    max-width: 600px;
 }
 
 .profile-post-form{

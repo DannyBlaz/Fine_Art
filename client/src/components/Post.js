@@ -127,7 +127,7 @@ function Post() {
                             width: '74%',
                             height: 'auto'
                         }}>
-                            <SinglePost post={singlePost} style={{ height: "auto", position: "fixed" }}/>
+                            <SinglePost post={singlePost} />
                         </div>
                         <div className="form-button">
                             {postForm ? (
