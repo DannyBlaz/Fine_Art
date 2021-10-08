@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Logo from "./assets/logo.png";
 import Profile from "./assets/profile.png";
+// import User from '/User.js';
 
 function Post() {
     const [postArray, setPostArray] = useState([]);
     const [postForm, setPostForm] = useState(false);
+    // const [user, setUser] = useState(false);
     const [search, setSearch] = useState("")
     const history = useHistory();
     const [singlePost, setSinglePost] = useState({
