@@ -75,7 +75,7 @@ function Post() {
     function handleClick(e){
         setPostForm(!postForm);
     }
-    // console.log(postArray[0])
+
     const searchItems = sortedArray.filter((card) => {
         return card.title.toLowerCase().includes(search.toLowerCase()) || card.user.username.toLowerCase().includes(search.toLowerCase())
     })    
@@ -127,7 +127,7 @@ function Post() {
                             width: '74%',
                             height: 'auto'
                         }}>
-                            <SinglePost post={singlePost} />
+                            <SinglePost post={singlePost} style={{ height: "auto", position: "fixed" }}/>
                         </div>
                         <div className="form-button">
                             {postForm ? (

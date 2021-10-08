@@ -52,7 +52,7 @@ function User({ user }) {
     function handlePostSubmit(e) {
         e.preventDefault();
         console.log(parseFloat(localStorage.post_id))
-        fetch(`/api/posts/${parseFloat(localStorage.post_id)}`, {
+        fetch(`/posts/${parseFloat(localStorage.post_id)}`, {
             method: "PATCH",
             headers: {
                 Accept: "application/json",
@@ -72,7 +72,7 @@ function User({ user }) {
                 if (data.errors) {
                     setErrors(data.errors)
                 } else {
-                    history.push("/api/me");
+                    history.push("/me");
                     window.location.reload();
                 }
             })
@@ -109,7 +109,7 @@ function User({ user }) {
     function handleSubmit(e) {
         e.preventDefault();
          console.log("I was clicked")
-        fetch(`/api/users/${user.id}`, {
+        fetch(`/users/${user.id}`, {
             method: "PATCH",
             headers: {
                 Accept: "application/json",
@@ -132,11 +132,12 @@ function User({ user }) {
     return (
         <div className="user-container">
             {updateForm ? 
-                <form onSubmit={handleSubmit} >
+                <form className="profile-update-form" onSubmit={handleSubmit} >
                     <label>Username:</label>
                     <input type="text" name="username" placeholder="Username" value={userData.username} onChange={handleChange} /><br />
                     <label>Password:</label>
-                    <input type="text" name="password" placeholder="Password" value={userData.password} onChange={handleChange} /><br />
+                    <input type="password" name="password" placeholder="Password" value={userData.password} onChange={handleChange} /><br />
+                    Most include password********
                     <label>Profile Picture:</label>
                     <input type="text" name="profile_picture" placeholder="image" value={userData.profile_picture} onChange={handleChange} /><br />
                     <label>About:</label>

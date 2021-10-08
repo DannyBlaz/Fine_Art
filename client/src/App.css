@@ -409,3 +409,33 @@ div.main{
     margin-top: 10px;
     font-size: 18px;
 }
+
+.profile-update-form{
+    width: 300px;
+    margin-left: 20px;
+}
+
+.profile-update-form label{
+    display: flex;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.profile-update-form input, select{
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline:none;
+}
+
+.profile-update-form button{
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #27496D;
+    color: white;
+    font-size: 18px;
+}
