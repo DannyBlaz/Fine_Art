@@ -60,7 +60,9 @@ function Post() {
         ]
     })
     
-    // console.log(postArray);
+    let sortedArray = postArray.sort(function (a, b) {
+        return parseFloat(b.id) - parseFloat(a.id);
+    });
 
     useEffect(() =>{
         fetch("/posts")
@@ -72,7 +74,7 @@ function Post() {
         setPostForm(!postForm);
     }
     // console.log(postArray[0])
-    const searchItems = postArray.filter((card) => {
+    const searchItems = sortedArray.filter((card) => {
         return card.title.toLowerCase().includes(search.toLowerCase()) || card.user.username.toLowerCase().includes(search.toLowerCase())
     })    
 
