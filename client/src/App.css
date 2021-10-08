@@ -373,3 +373,39 @@ div.main{
     border-radius: 8px;
     height: 400px;
 }
+
+.profile-post-form{
+    border: 1px solid gray;
+    width: 50%;
+    color:white;
+    height: auto;
+    width: 400px;
+    background-color:#142850;
+    border-radius: 12px;
+    font-family: "Montserrat", "sans-serif";
+}
+
+.profile-post-form input, select{
+    width: 90%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline:none;
+}
+
+.profile-post-form button{
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #27496D;
+    color: white;
+    font-size: 18px;
+}
+
+.profile-post-form label{
+    display: flex;
+    margin-top: 10px;
+    font-size: 18px;
+}

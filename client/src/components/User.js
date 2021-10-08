@@ -52,7 +52,7 @@ function User({ user }) {
     function handlePostSubmit(e) {
         e.preventDefault();
         console.log(parseFloat(localStorage.post_id))
-        fetch(`/posts/${parseFloat(localStorage.post_id)}`, {
+        fetch(`/api/posts/${parseFloat(localStorage.post_id)}`, {
             method: "PATCH",
             headers: {
                 Accept: "application/json",
@@ -109,7 +109,7 @@ function User({ user }) {
     function handleSubmit(e) {
         e.preventDefault();
          console.log("I was clicked")
-        fetch(`/users/${user.id}`, {
+        fetch(`/api/users/${user.id}`, {
             method: "PATCH",
             headers: {
                 Accept: "application/json",
@@ -123,7 +123,7 @@ function User({ user }) {
             if (data.errors) {
                 setErrors(data.errors)
             } else {
-                history.push("/home");
+                history.push("/me");
                 window.location.reload();
             }
         });
@@ -174,7 +174,7 @@ function User({ user }) {
                 <br/>
                 <h3>Projects</h3>
                 {updatePost ? 
-                <form onSubmit={handlePostSubmit}>
+                <form className="profile-post-form" onSubmit={handlePostSubmit}>
                     <label>Title:</label>
                     <input type="text" name="title" placeholder="title" value={formData.title} onChange={manageFormData} /><br />
                     <label >Image:</label>
@@ -198,7 +198,7 @@ function User({ user }) {
                         <div>{error}</div>
                     ))}
                     <br />
-                    <input type="submit" value="Submit" />
+                    <button type="submit" value="Submit">Submit</button>
                 </form>
                 :
                 <>
